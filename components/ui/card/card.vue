@@ -27,21 +27,21 @@ setTimeout(() => {
 <template>
   <template v-if="isLoaded">
     <div class="max-w-[240px] min-w-[140px] mx-auto">
-      <NuxtImg :src="image" class="rounded-2xl mb-2" />
+      <NuxtImg :src="image" class="rounded-2xl mb-2 sm:max-h-[338px] max-h-[220px] w-full" />
       <template v-if="store.value === 'dark'">
         <p class="font-semibold md:text-[18px] text-[14px] text-white mb-1">
-          {{ truncate(title, 32) }}
+          {{ truncate(title, 28) }}
         </p>
         <p class="text-white md:text-[14px] text-[12px]">
-          {{ truncate(genre, 28) }}
+          {{ truncate(genre, 20) }}
         </p>
       </template>
       <template v-else>
-        <p class="font-semibold text-[18px] text-black mb-1">
-          {{ truncate(title, 32) }}
+        <p class="font-semibold md:text-[18px] text-[14px] text-black mb-1">
+          {{ truncate(title, 28) }}
         </p>
-        <p class="text-black text-[14px]">
-          {{ truncate(genre, 28) }}
+        <p class="text-black md:text-[14px] text-[12px]">
+          {{ truncate(genre, 20) }}
         </p>
       </template>
     </div>

@@ -1,6 +1,6 @@
 <template>
-  <ScrollArea class="h-[84vh] w-full rounded-md dark">
-    <div class="text-white custom-grid gap-12">
+  <ScrollArea class="h-[84vh] w-full rounded-md dark sm:block hidden">
+    <div class="text-white custom-grid md:gap-8 gap-4">
       <template v-for="(anime, index) in animeList" :key="index">
         <NuxtLink :to="`/watch/` + anime.url">
           <Card
@@ -12,6 +12,19 @@
       </template>
     </div>
   </ScrollArea>
+  <div class="lg:hidden block">
+    <div class="text-white custom-grid md:gap-8 gap-4">
+      <template v-for="(anime, index) in animeList" :key="index">
+        <NuxtLink :to="`/watch/` + anime.url">
+          <Card
+            :image="anime.image"
+            :title="anime.title"
+            :genre="anime.genre"
+          />
+        </NuxtLink>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>

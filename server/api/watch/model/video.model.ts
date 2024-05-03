@@ -23,6 +23,7 @@ const WatchSchema = new Schema(
     new: { type: Boolean, default: false }, // Новинка
     ongoing: { type: Boolean, default: false }, // Онгоинг
     finished: { type: Boolean, default: false }, // Завершено
+    url: String
   },
   {
     timestamps: true, // Добавляем поля createdAt и updatedAt

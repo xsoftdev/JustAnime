@@ -14,7 +14,7 @@
 <style>
 @font-face {
   font-family: "Euclid";
-  src: url("./assets/fonts/Euclid.ttf");
+  src: url("./assets/fonts/DinPro.ttf");
 }
 * {
   font-family: "Euclid";

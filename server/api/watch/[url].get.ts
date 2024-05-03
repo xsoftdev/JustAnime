@@ -9,38 +9,35 @@ interface EventContext {
   };
 }
 
-interface Episode {
-  href: string;
-  text: string;
+interface Series {
+  player: any;
+  posters: any;
 }
 
 export default defineEventHandler(async (event: { context: EventContext }) => {
   try {
-    const url = `https://jut.su/${event.context.params!.url}`;
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(url);
-
-    const html = await page.content();
-    const $ = cheerio.load(html);
-
-    const episodes: Episode[] = [];
-    $('div#dle-content div a').each((i, element) => {
-      const href = $(element).attr('href');
-      const text = $(element).text().trim();
-      if (href && href.includes('episode')) {
-        episodes.push({ href, text });
-      }
-    });
-
-    await browser.close();
-
     const watchData = await WatchModel.findOne({ url: event.context.params!.url });
+
+    let player: any;
+    let posters: any;
+
+    const response = await fetch(`https://api.anilibria.tv/v3/title?code=${event.context.params!.url}`);
+    const responseData = await response.json();
+
+    if (responseData && responseData.player && responseData.posters) {
+      player = responseData.player;
+      posters = responseData.posters;
+    } else {
+      throw new Error('Missing player or posters data in API response');
+    }
 
     return {
       success: true,
       data: watchData || {},
-      assets: episodes,
+      assets: {
+        player: player,
+        posters: posters
+      }
     };
   } catch (error) {
     console.error(error);

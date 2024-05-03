@@ -23,13 +23,13 @@ export default defineNuxtConfig({
     plugins: ["~/server/index.ts"]
   },
   colorMode: {
-    preference: 'system',
+    preference: 'dark',
     fallback: 'dark',
     hid: 'nuxt-color-mode-script',
     globalName: '__NUXT_COLOR_MODE__',
     componentName: 'ColorScheme',
     classPrefix: '',
     classSuffix: '',
-    storageKey: 'nuxt-color-mode'
+    storageKey: 'main-color'
   }
 })
